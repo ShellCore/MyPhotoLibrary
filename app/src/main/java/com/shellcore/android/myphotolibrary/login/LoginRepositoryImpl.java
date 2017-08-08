@@ -2,13 +2,11 @@ package com.shellcore.android.myphotolibrary.login;
 
 import android.support.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.ProviderQueryResult;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.shellcore.android.myphotolibrary.libs.base.EventBus;
 import com.shellcore.android.myphotolibrary.login.events.LoginEvent;
 
@@ -50,37 +48,25 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void signup(final String user, final String pass) {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        final boolean[] exists = new boolean[1];
-        auth.fetchProvidersForEmail(user)
-                .addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+        FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(user, pass)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<ProviderQueryResult> task) {
-                        exists[0] = !task.getResult()
-                                .getProviders()
-                                .isEmpty();
+                    public void onSuccess(AuthResult authResult) {
+                        post(LoginEvent.ON_SIGNUP_SUCCESS);
+                        signin(user, pass);
                     }
-                });
-
-        if (exists[0]) {
-            signin(user, pass);
-        } else {
-            FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(user, pass)
-                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            post(LoginEvent.ON_SIGNUP_SUCCESS);
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof FirebaseAuthUserCollisionException) {
                             signin(user, pass);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                        } else {
                             post(LoginEvent.ON_SIGNUP_ERROR, e.getLocalizedMessage());
                         }
-                    });
-        }
+                    }
+                });
     }
 
     @Override
