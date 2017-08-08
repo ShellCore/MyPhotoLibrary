@@ -1,0 +1,45 @@
+{
+  "project_info": {
+    "project_number": "546666706606",
+    "firebase_url": "https://my-photo-library.firebaseio.com",
+    "project_id": "my-photo-library",
+    "storage_bucket": "my-photo-library.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546666706606:android:fe36f4ea89f5939a",
+        "android_client_info": {
+          "package_name": "com.shellcore.android.myphotolibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546666706606-4e5cqnqej5l32suj5hsfitcmg3p8tfke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJhm-1ncSv3swsNd6WjftgPvMH2caVcJk"
+        },
+        {
+          "current_key": "AIzaSyAYOQ56xqfAxRhugbSRKYgXhQItV6FgguA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

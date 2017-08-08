@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">My Photo Library</string>
+
+    <!--Login-->
+    <string name="login.hint.email">Correo electrónico</string>
+    <string name="login.hint.password">Contraseña</string>
+    <string name="login.btn.signin_or_signup">Ingresar o registrarse</string>
+    <string name="login.message.error.signin">Error al iniciar sesión: %s</string>
+    <string name="login.message.error.signup">Error al crear usuario: %s</string>
+    <string name="login.message.success.signup">El usuario ha sido creado correctamente</string>
+
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
