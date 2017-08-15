@@ -6,8 +6,6 @@ package com.shellcore.android.myphotolibrary.main.ui;
 
 public interface MainView {
 
-    void handleBtnShare();
-
     void handleMainScreen();
     void handleCamera();
     void handleMyGallery();

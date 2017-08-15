@@ -3,9 +3,7 @@ package com.shellcore.android.myphotolibrary.main.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -26,7 +24,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
@@ -38,8 +35,6 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     @BindView(R.id.frm_content)
     FrameLayout relContent;
-    @BindView(R.id.share)
-    FloatingActionButton share;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.drawer_layout)
@@ -57,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         setupView();
 
         presenter.onCreate();
+        handleMainScreen();
     }
 
     @Override
@@ -118,13 +114,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @OnClick(R.id.share)
-    @Override
-    public void handleBtnShare() {
-        Snackbar.make(container, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     @Override
