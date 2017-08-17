@@ -13,7 +13,7 @@ import com.shellcore.android.myphotolibrary.db.MyPHotoLibraryDatabase;
 @Table(database = MyPHotoLibraryDatabase.class)
 public class Photo extends BaseModel {
 
-    @PrimaryKey
+    @PrimaryKey (autoincrement = true)
     private long id;
 
     @Column

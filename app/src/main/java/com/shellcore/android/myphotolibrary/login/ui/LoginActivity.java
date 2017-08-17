@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     TextInputLayout tilPassword;
     @BindView(R.id.btn_register)
     Button btnRegister;
-    @BindView(R.id.progressbar)
+    @BindView(R.id.progressbarmaincsreen)
     ProgressBar progressbar;
 
     @Override

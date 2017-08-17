@@ -19,4 +19,6 @@
     <string name="main.message.no_photos">No photos to display</string>
 
     <string name="share">Share</string>
+    <string name="main.message.picture.source">Selecciona una foto</string>
+    <string name="main.error.dispatch.camera">Error al crear el archivo</string>
 </resources>

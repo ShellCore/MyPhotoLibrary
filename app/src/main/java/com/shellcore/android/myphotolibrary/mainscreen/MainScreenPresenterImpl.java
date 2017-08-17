@@ -36,6 +36,10 @@ public class MainScreenPresenterImpl implements MainScreenPresenter {
 
     @Override
     public void readLastPhoto() {
+        if (view != null) {
+            view.hideImage();
+            view.hideTxtNoPhotos();
+        }
         interactor.readLastPhoto();
     }
 

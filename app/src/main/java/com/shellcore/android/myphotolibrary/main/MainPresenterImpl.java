@@ -39,12 +39,46 @@ public class MainPresenterImpl implements MainPresenter {
     public void onEventMainThread(MainEvent event) {
         switch (event.getEventType()) {
             case MainEvent.LOGOUT_SUCCESS:
-                view.navigateToLoginView();
+                logoutSuccess();
+                break;
+            case MainEvent.UPLOAD_INIT:
+                showMessage("Uploading photo");
+                break;
+            case MainEvent.UPLOAD_COMPLETE:
+                showMessage("The photo has been uploaded");
+                updatePhotos();
+                break;
+            case MainEvent.UPLOAD_ERROR:
+                showMessage(event.getErrorMessage());
+                break;
         }
     }
 
     @Override
     public void logout() {
         interactor.logout();
+    }
+
+    private void updatePhotos() {
+        if (view != null) {
+            view.updatePhotos();
+        }
+    }
+
+    @Override
+    public void uploadPhoto(String uri) {
+        interactor.uploadPhoto(uri);
+    }
+
+    private void showMessage(String msg) {
+        if (view != null) {
+            view.showMessage(msg);
+        }
+    }
+
+    private void logoutSuccess() {
+        if (view != null) {
+            view.navigateToLoginView();
+        }
     }
 }

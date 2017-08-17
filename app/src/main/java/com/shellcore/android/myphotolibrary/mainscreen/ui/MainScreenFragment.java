@@ -1,7 +1,6 @@
 package com.shellcore.android.myphotolibrary.mainscreen.ui;
 
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.shellcore.android.myphotolibrary.BaseFragment;
 import com.shellcore.android.myphotolibrary.MyPhotoLibraryApp;
 import com.shellcore.android.myphotolibrary.R;
 import com.shellcore.android.myphotolibrary.db.entities.Photo;
@@ -33,7 +34,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class MainScreenFragment extends Fragment implements MainScreenView {
+public class MainScreenFragment extends BaseFragment implements MainScreenView {
 
     private Photo lastPhoto;
 
@@ -46,6 +47,8 @@ public class MainScreenFragment extends Fragment implements MainScreenView {
     // Components
     @BindView(R.id.img_last_photo)
     ImageView imgLastPhoto;
+    @BindView(R.id.progressbarmaincsreen)
+    ProgressBar progressbar;
     @BindView(R.id.txt_no_photos)
     TextView txtNoPhotos;
     @BindView(R.id.btn_share)
@@ -66,7 +69,7 @@ public class MainScreenFragment extends Fragment implements MainScreenView {
 
         setupInjection();
         presenter.onCreate();
-        presenter.readLastPhoto();
+        updatePhoto();
         return v;
     }
 
@@ -132,5 +135,10 @@ public class MainScreenFragment extends Fragment implements MainScreenView {
         MyPhotoLibraryApp app = (MyPhotoLibraryApp) getActivity().getApplication();
         MainScreenComponent component = app.getMainScreenComponent(getActivity(), this);
         component.inject(this);
+    }
+
+    @Override
+    public void updatePhoto() {
+        presenter.readLastPhoto();
     }
 }

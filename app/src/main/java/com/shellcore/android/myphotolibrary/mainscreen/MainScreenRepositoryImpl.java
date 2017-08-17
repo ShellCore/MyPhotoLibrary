@@ -22,20 +22,15 @@ public class MainScreenRepositoryImpl implements MainScreenRepository {
 
     @Override
     public void readLastPhoto() {
-//        List<Photo> list = SQLite.select()
-//                .from(Photo.class)
-//                .orderBy(Photo_Table.id, false)
-//                .queryList();
-//        if (!list.isEmpty()) {
-//            post(MainScreenEvent.ON_READ_SUCCESS, list.get(0));
-//        } else {
-//            post(MainScreenEvent.ON_READ_ERROR, "There's no photos in database");
-//        }
-        Photo photo = new Photo();
-        photo.setId(1);
-        photo.setTitle("Foto de prueba");
-        photo.setUrl("http://wallpoper.com/images/00/23/99/34/japan-landscapes_00239934.jpg");
-        post(MainScreenEvent.ON_READ_SUCCESS, photo);
+        List<Photo> list = SQLite.select()
+                .from(Photo.class)
+                .orderBy(Photo_Table.id, false)
+                .queryList();
+        if (!list.isEmpty()) {
+            post(MainScreenEvent.ON_READ_SUCCESS, list.get(0));
+        } else {
+            post(MainScreenEvent.ON_READ_ERROR, "There's no photos in database");
+        }
     }
 
     private void post(int eventType, Photo lastPhoto, String errorMessage) {

@@ -14,4 +14,6 @@ public interface MainPresenter {
     void onEventMainThread(MainEvent event);
 
     void logout();
+
+    void uploadPhoto(String uri);
 }

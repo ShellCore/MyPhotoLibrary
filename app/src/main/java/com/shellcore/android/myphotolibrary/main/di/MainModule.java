@@ -1,6 +1,7 @@
 package com.shellcore.android.myphotolibrary.main.di;
 
 import com.shellcore.android.myphotolibrary.libs.base.EventBus;
+import com.shellcore.android.myphotolibrary.libs.base.ImageStorage;
 import com.shellcore.android.myphotolibrary.main.MainInteractor;
 import com.shellcore.android.myphotolibrary.main.MainInteractorImpl;
 import com.shellcore.android.myphotolibrary.main.MainPresenter;
@@ -47,7 +48,7 @@ public class MainModule {
 
     @Provides
     @Singleton
-    MainRepository providesMainRepository(EventBus eventBus) {
-        return new MainRepositoryImpl(eventBus);
+    MainRepository providesMainRepository(EventBus eventBus, ImageStorage imageStorage) {
+        return new MainRepositoryImpl(eventBus, imageStorage);
     }
 }

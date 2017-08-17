@@ -16,4 +16,9 @@ public class MainInteractorImpl implements MainInteractor {
     public void logout() {
         repository.logout();
     }
+
+    @Override
+    public void uploadPhoto(String uri) {
+        repository.uploadPhoto(uri);
+    }
 }

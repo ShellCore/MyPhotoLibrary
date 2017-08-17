@@ -7,4 +7,5 @@ package com.shellcore.android.myphotolibrary.main;
 public interface MainRepository {
 
     void logout();
+    void uploadPhoto(String uri);
 }

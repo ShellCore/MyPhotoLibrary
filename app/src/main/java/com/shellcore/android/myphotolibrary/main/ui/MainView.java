@@ -14,4 +14,8 @@ public interface MainView {
     void handleLogout();
 
     void navigateToLoginView();
+
+    void showMessage(String msg);
+
+    void updatePhotos();
 }
