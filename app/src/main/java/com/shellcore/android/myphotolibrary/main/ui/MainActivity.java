@@ -18,7 +18,7 @@ import com.shellcore.android.myphotolibrary.R;
 import com.shellcore.android.myphotolibrary.login.ui.LoginActivity;
 import com.shellcore.android.myphotolibrary.main.MainPresenter;
 import com.shellcore.android.myphotolibrary.main.di.MainComponent;
-import com.shellcore.android.myphotolibrary.mainscreen.MainScreenFragment;
+import com.shellcore.android.myphotolibrary.mainscreen.ui.MainScreenFragment;
 
 import javax.inject.Inject;
 
@@ -120,7 +120,8 @@ public class MainActivity extends AppCompatActivity
     public void handleMainScreen() {
         MainScreenFragment fragment = new MainScreenFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.frm_content, fragment);
+                .replace(R.id.frm_content, fragment)
+                .commit();
     }
 
     @Override
