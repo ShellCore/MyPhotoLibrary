@@ -29,7 +29,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +50,6 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     TextView txtNoPhotos;
     @BindView(R.id.container)
     CoordinatorLayout container;
-    Unbinder unbinder;
 
     public GalleryFragment() {
     }
@@ -61,10 +59,11 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_gallery, container, false);
-        unbinder = ButterKnife.bind(this, v);
+        ButterKnife.bind(this, v);
 
         setupInjection();
         setupRecyclerView();
+        presenter.onResume();
         presenter.getPhotos();
 
         return v;
@@ -73,7 +72,7 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
+
     }
 
     @Override
@@ -83,8 +82,15 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     }
 
     @Override
-    public void updatePhoto() {
-        presenter.getPhotos();
+    public void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onItemClick(Photo photo) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(photo.getUrl()));
+        startActivity(intent);
     }
 
     @Override
@@ -108,6 +114,11 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     }
 
     @Override
+    public void updatePhoto() {
+        presenter.getPhotos();
+    }
+
+    @Override
     public void showMessage(String msg) {
         Snackbar.make(container, msg, Snackbar.LENGTH_SHORT)
                 .show();
@@ -118,19 +129,6 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
         adapter.setList(list);
     }
 
-    @Override
-    public void onDestroyView() {
-        presenter.onDestroy();
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
-    public void onItemClick(Photo photo) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(photo.getUrl()));
-        startActivity(intent);
-    }
-
     private void setupInjection() {
         MyPhotoLibraryApp app = (MyPhotoLibraryApp) getActivity().getApplication();
         GalleryComponent component = app.getGalleryComponent(getActivity(), this, this);
@@ -138,7 +136,7 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
     }
 
     private void setupRecyclerView() {
-        recGalleryList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recGalleryList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recGalleryList.setAdapter(adapter);
     }
 }

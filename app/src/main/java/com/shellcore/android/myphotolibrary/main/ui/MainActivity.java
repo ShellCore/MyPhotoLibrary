@@ -83,8 +83,7 @@ public class MainActivity extends AppCompatActivity
         setupView();
 
         presenter.onCreate();
-        // handleMainScreen();
-        handleMyGallery();
+         handleMainScreen();
     }
 
     @Override
