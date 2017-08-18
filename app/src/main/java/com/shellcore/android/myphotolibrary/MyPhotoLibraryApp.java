@@ -17,6 +17,11 @@ import com.shellcore.android.myphotolibrary.mainscreen.di.DaggerMainScreenCompon
 import com.shellcore.android.myphotolibrary.mainscreen.di.MainScreenComponent;
 import com.shellcore.android.myphotolibrary.mainscreen.di.MainScreenModule;
 import com.shellcore.android.myphotolibrary.mainscreen.ui.MainScreenView;
+import com.shellcore.android.myphotolibrary.photogallery.adapters.OnItemClickListener;
+import com.shellcore.android.myphotolibrary.photogallery.di.DaggerGalleryComponent;
+import com.shellcore.android.myphotolibrary.photogallery.di.GalleryComponent;
+import com.shellcore.android.myphotolibrary.photogallery.di.GalleryModule;
+import com.shellcore.android.myphotolibrary.photogallery.ui.GalleryView;
 
 /**
  * Created by Cesar on 08/08/2017.
@@ -62,6 +67,13 @@ public class MyPhotoLibraryApp extends Application {
         return DaggerMainScreenComponent.builder()
                 .libsModule(new LibsModule(activity, activity.getApplicationContext()))
                 .mainScreenModule(new MainScreenModule(view))
+                .build();
+    }
+
+    public GalleryComponent getGalleryComponent(Activity activity, GalleryView view, OnItemClickListener listener) {
+        return DaggerGalleryComponent.builder()
+                .libsModule(new LibsModule(activity, activity.getApplicationContext()))
+                .galleryModule(new GalleryModule(view, listener))
                 .build();
     }
 }

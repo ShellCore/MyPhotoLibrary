@@ -28,6 +28,7 @@ import com.shellcore.android.myphotolibrary.login.ui.LoginActivity;
 import com.shellcore.android.myphotolibrary.main.MainPresenter;
 import com.shellcore.android.myphotolibrary.main.di.MainComponent;
 import com.shellcore.android.myphotolibrary.mainscreen.ui.MainScreenFragment;
+import com.shellcore.android.myphotolibrary.photogallery.ui.GalleryFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -82,7 +83,8 @@ public class MainActivity extends AppCompatActivity
         setupView();
 
         presenter.onCreate();
-        handleMainScreen();
+        // handleMainScreen();
+        handleMyGallery();
     }
 
     @Override
@@ -204,7 +206,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void handleMyGallery() {
-
+        fragment = new GalleryFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.frm_content, fragment)
+                .commit();
     }
 
     @Override

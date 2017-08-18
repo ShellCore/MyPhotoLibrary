@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
@@ -47,8 +46,6 @@ public class MainScreenFragment extends BaseFragment implements MainScreenView {
     // Components
     @BindView(R.id.img_last_photo)
     ImageView imgLastPhoto;
-    @BindView(R.id.progressbarmaincsreen)
-    ProgressBar progressbar;
     @BindView(R.id.txt_no_photos)
     TextView txtNoPhotos;
     @BindView(R.id.btn_share)
