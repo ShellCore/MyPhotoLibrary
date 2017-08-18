@@ -16,8 +16,8 @@
         <meta-data
             android:name="CLOUDINARY_URL"
             android:value="@string/CLOUDINARY_URL" />
-        <activity
-            android:name=".login.ui.LoginActivity">
+
+        <activity android:name=".login.ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +28,7 @@
             android:name=".main.ui.MainActivity"
             android:label="@string/main.title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".photoDetail.ui.PhotoDetailActivity"></activity>
     </application>
 
 </manifest>

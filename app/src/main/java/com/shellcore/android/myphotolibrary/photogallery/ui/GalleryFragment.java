@@ -2,7 +2,6 @@ package com.shellcore.android.myphotolibrary.photogallery.ui;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -18,6 +17,7 @@ import com.shellcore.android.myphotolibrary.BaseFragment;
 import com.shellcore.android.myphotolibrary.MyPhotoLibraryApp;
 import com.shellcore.android.myphotolibrary.R;
 import com.shellcore.android.myphotolibrary.db.entities.Photo;
+import com.shellcore.android.myphotolibrary.photoDetail.ui.PhotoDetailActivity;
 import com.shellcore.android.myphotolibrary.photogallery.GalleryPresenter;
 import com.shellcore.android.myphotolibrary.photogallery.adapters.GalleryAdapter;
 import com.shellcore.android.myphotolibrary.photogallery.adapters.OnItemClickListener;
@@ -89,7 +89,8 @@ public class GalleryFragment extends BaseFragment implements GalleryView, OnItem
 
     @Override
     public void onItemClick(Photo photo) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(photo.getUrl()));
+        Intent intent = new Intent(getActivity(), PhotoDetailActivity.class);
+        intent.putExtra(PhotoDetailActivity.PHOTO, photo);
         startActivity(intent);
     }
 

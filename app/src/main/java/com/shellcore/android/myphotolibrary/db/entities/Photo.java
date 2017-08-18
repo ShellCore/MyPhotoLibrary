@@ -6,12 +6,14 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.shellcore.android.myphotolibrary.db.MyPHotoLibraryDatabase;
 
+import java.io.Serializable;
+
 /**
  * Created by Cesar on 08/08/2017.
  */
 
 @Table(database = MyPHotoLibraryDatabase.class)
-public class Photo extends BaseModel {
+public class Photo extends BaseModel implements Serializable {
 
     @PrimaryKey (autoincrement = true)
     private long id;
