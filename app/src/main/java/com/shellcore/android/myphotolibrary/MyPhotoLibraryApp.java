@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
+import com.shellcore.android.myphotolibrary.inspectphotos.di.DaggerInspectPhotoComponent;
+import com.shellcore.android.myphotolibrary.inspectphotos.di.InspectPhotoComponent;
+import com.shellcore.android.myphotolibrary.inspectphotos.di.InspectPhotoModule;
+import com.shellcore.android.myphotolibrary.inspectphotos.ui.InspectPhotoView;
 import com.shellcore.android.myphotolibrary.libs.di.LibsModule;
 import com.shellcore.android.myphotolibrary.login.di.DaggerLoginComponent;
 import com.shellcore.android.myphotolibrary.login.di.LoginComponent;
@@ -74,6 +78,13 @@ public class MyPhotoLibraryApp extends Application {
         return DaggerGalleryComponent.builder()
                 .libsModule(new LibsModule(activity, activity.getApplicationContext()))
                 .galleryModule(new GalleryModule(view, listener))
+                .build();
+    }
+
+    public InspectPhotoComponent getInspectPhotoComponent(Activity activity, InspectPhotoView view) {
+        return DaggerInspectPhotoComponent.builder()
+                .libsModule(new LibsModule(activity, activity.getApplicationContext()))
+                .inspectPhotoModule(new InspectPhotoModule(view))
                 .build();
     }
 }

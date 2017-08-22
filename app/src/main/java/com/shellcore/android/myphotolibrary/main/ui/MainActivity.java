@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import com.shellcore.android.myphotolibrary.BaseFragment;
 import com.shellcore.android.myphotolibrary.MyPhotoLibraryApp;
 import com.shellcore.android.myphotolibrary.R;
+import com.shellcore.android.myphotolibrary.inspectphotos.ui.InspectPhotoFragment;
 import com.shellcore.android.myphotolibrary.login.ui.LoginActivity;
 import com.shellcore.android.myphotolibrary.main.MainPresenter;
 import com.shellcore.android.myphotolibrary.main.di.MainComponent;
@@ -213,7 +214,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void handleInspectPhotos() {
-
+        fragment = new InspectPhotoFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.frm_content, fragment)
+                .commit();
     }
 
     @Override

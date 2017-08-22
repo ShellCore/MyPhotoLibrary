@@ -32,8 +32,8 @@ public class FlickrClient {
                 HttpUrl.Builder urlBuilder = request.url()
                         .newBuilder();
                 urlBuilder.addQueryParameter("api_key", API_KEY);
-                urlBuilder.addQueryParameter("api_key", "json");
-                urlBuilder.addQueryParameter("api_key", "1");
+                urlBuilder.addQueryParameter("format", "json");
+                urlBuilder.addQueryParameter("nojsoncallback", "1");
 
                 request = request.newBuilder()
                         .url(urlBuilder.build())

@@ -21,4 +21,9 @@
     <string name="share">Share</string>
     <string name="main.message.picture.source">Selecciona una foto</string>
     <string name="main.error.dispatch.camera">Error al crear el archivo</string>
+
+    <!--Inspect-->
+    <string name="inspect.message.search_instruction">Enter tags separated with commas to search</string>
+    <string name="inspect.hint.search">Tags to search</string>
+    <string name="inspect.button.search">Search</string>
 </resources>

@@ -28,7 +28,8 @@
             android:name=".main.ui.MainActivity"
             android:label="@string/main.title"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".photoDetail.ui.PhotoDetailActivity"></activity>
+        <activity android:name=".photoDetail.ui.PhotoDetailActivity" />
+        <activity android:name=".photolist.ui.PhotoListActivity"></activity>
     </application>
 
 </manifest>
