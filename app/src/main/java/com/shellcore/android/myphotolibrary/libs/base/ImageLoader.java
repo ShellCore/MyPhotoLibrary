@@ -9,4 +9,5 @@ import android.widget.ImageView;
 public interface ImageLoader {
 
     void load(ImageView view, String url);
+    void setOnFinishedImageLoaderListener(Object listener);
 }

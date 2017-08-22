@@ -4,10 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
-import com.shellcore.android.myphotolibrary.inspectphotos.di.DaggerInspectPhotoComponent;
-import com.shellcore.android.myphotolibrary.inspectphotos.di.InspectPhotoComponent;
-import com.shellcore.android.myphotolibrary.inspectphotos.di.InspectPhotoModule;
-import com.shellcore.android.myphotolibrary.inspectphotos.ui.InspectPhotoView;
 import com.shellcore.android.myphotolibrary.libs.di.LibsModule;
 import com.shellcore.android.myphotolibrary.login.di.DaggerLoginComponent;
 import com.shellcore.android.myphotolibrary.login.di.LoginComponent;
@@ -26,6 +22,10 @@ import com.shellcore.android.myphotolibrary.photogallery.di.DaggerGalleryCompone
 import com.shellcore.android.myphotolibrary.photogallery.di.GalleryComponent;
 import com.shellcore.android.myphotolibrary.photogallery.di.GalleryModule;
 import com.shellcore.android.myphotolibrary.photogallery.ui.GalleryView;
+import com.shellcore.android.myphotolibrary.photolist.di.DaggerPhotoListComponent;
+import com.shellcore.android.myphotolibrary.photolist.di.PhotoListComponent;
+import com.shellcore.android.myphotolibrary.photolist.di.PhotoListModule;
+import com.shellcore.android.myphotolibrary.photolist.ui.PhotoListView;
 
 /**
  * Created by Cesar on 08/08/2017.
@@ -81,10 +81,10 @@ public class MyPhotoLibraryApp extends Application {
                 .build();
     }
 
-    public InspectPhotoComponent getInspectPhotoComponent(Activity activity, InspectPhotoView view) {
-        return DaggerInspectPhotoComponent.builder()
+    public PhotoListComponent getPhotoListComponent(Activity activity, PhotoListView view) {
+        return DaggerPhotoListComponent.builder()
                 .libsModule(new LibsModule(activity, activity.getApplicationContext()))
-                .inspectPhotoModule(new InspectPhotoModule(view))
+                .photoListModule(new PhotoListModule(view))
                 .build();
     }
 }

@@ -26,4 +26,8 @@
     <string name="inspect.message.search_instruction">Enter tags separated with commas to search</string>
     <string name="inspect.hint.search">Tags to search</string>
     <string name="inspect.button.search">Search</string>
+
+    <!--Photo List-->
+    <string name="photolist.error">Imposible obtener información: %s</string>
+    <string name="photolist.notice.saved">Guardado exitosamente</string>
 </resources>
