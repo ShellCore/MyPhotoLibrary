@@ -13,8 +13,10 @@ public interface PhotoListPresenter {
     void onDestroy();
 
     void dismissPhoto();
+    void dismissPhotoDown();
     void getNextPhoto(String tags);
     void savePhoto(Photo currentPhoto);
+    void savePhotoLeft(Photo currentPhoto);
 
     void imageReady();
     void imageError(String errorMessage);

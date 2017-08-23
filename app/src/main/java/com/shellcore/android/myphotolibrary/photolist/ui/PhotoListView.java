@@ -8,10 +8,15 @@ import com.shellcore.android.myphotolibrary.db.entities.Photo;
 
 public interface PhotoListView {
 
+    void showImage();
+    void hideImage();
+
     void showProgressBar();
     void hideProgressBar();
-    void saveAnimation();
-    void dismissAnimation();
+    void saveAnimationRight();
+    void saveAnimationLeft();
+    void dismissAnimationUp();
+    void dismissAnimationDown();
 
     void onPhotoSaved();
     void setPhoto(Photo photo);

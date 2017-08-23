@@ -73,6 +73,18 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoListVie
     }
 
     @Override
+    public void showImage() {
+        imgFlickrPhoto.setVisibility(View.VISIBLE);
+        txtTitle.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideImage() {
+        imgFlickrPhoto.setVisibility(View.GONE);
+        txtTitle.setVisibility(View.GONE);
+    }
+
+    @Override
     public void showProgressBar() {
         progressbar.setVisibility(View.VISIBLE);
     }
@@ -83,15 +95,29 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoListVie
     }
 
     @Override
-    public void saveAnimation() {
+    public void saveAnimationRight() {
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.save_animation);
         anim.setAnimationListener(getAnimationListener());
         imgFlickrPhoto.startAnimation(anim);
     }
 
     @Override
-    public void dismissAnimation() {
+    public void saveAnimationLeft() {
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.save_animation_left);
+        anim.setAnimationListener(getAnimationListener());
+        imgFlickrPhoto.startAnimation(anim);
+    }
+
+    @Override
+    public void dismissAnimationUp() {
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.dismiss_animation);
+        anim.setAnimationListener(getAnimationListener());
+        imgFlickrPhoto.startAnimation(anim);
+    }
+
+    @Override
+    public void dismissAnimationDown() {
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.dismiss_animation_down);
         anim.setAnimationListener(getAnimationListener());
         imgFlickrPhoto.startAnimation(anim);
     }
@@ -106,6 +132,7 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoListVie
     public void setPhoto(Photo photo) {
         currentPhoto = photo;
         imageLoader.load(imgFlickrPhoto, photo.getUrl());
+        txtTitle.setText(photo.getTitle());
     }
 
     @Override
@@ -123,8 +150,20 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoListVie
     }
 
     @Override
+    public void onKeepLeft() {
+        if (currentPhoto != null) {
+            presenter.savePhotoLeft(currentPhoto);
+        }
+    }
+
+    @Override
     public void onDismiss() {
         presenter.dismissPhoto();
+    }
+
+    @Override
+    public void onDismissDown() {
+        presenter.dismissPhotoDown();
     }
 
     private void setupInjection() {
@@ -158,6 +197,8 @@ public class PhotoListActivity extends AppCompatActivity implements PhotoListVie
                 return gestureDetector.onTouchEvent(event);
             }
         };
+        imgFlickrPhoto.setOnTouchListener(gestureOnTouchListener);
+
     }
 
     private Animation.AnimationListener getAnimationListener() {

@@ -40,7 +40,15 @@ public class PhotoListPresenterImpl implements PhotoListPresenter {
     @Override
     public void dismissPhoto() {
         if (view != null) {
-            view.dismissAnimation();
+            view.dismissAnimationUp();
+        }
+        getNextPhoto(tags);
+    }
+
+    @Override
+    public void dismissPhotoDown() {
+        if (view != null) {
+            view.dismissAnimationDown();
         }
         getNextPhoto(tags);
     }
@@ -49,6 +57,7 @@ public class PhotoListPresenterImpl implements PhotoListPresenter {
     public void getNextPhoto(String tags) {
         this.tags = tags;
         if (view != null) {
+            view.hideImage();
             view.showProgressBar();
         }
         nextInteractor.execute(tags);
@@ -57,7 +66,16 @@ public class PhotoListPresenterImpl implements PhotoListPresenter {
     @Override
     public void savePhoto(Photo photo) {
         if (view != null) {
-            view.saveAnimation();
+            view.saveAnimationRight();
+            view.showProgressBar();
+        }
+        saveInteractor.execute(photo);
+    }
+
+    @Override
+    public void savePhotoLeft(Photo photo) {
+        if (view != null) {
+            view.saveAnimationLeft();
             view.showProgressBar();
         }
         saveInteractor.execute(photo);
@@ -67,6 +85,7 @@ public class PhotoListPresenterImpl implements PhotoListPresenter {
     public void imageReady() {
         if (view != null) {
             view.hideProgressBar();
+            view.showImage();
         }
     }
 
@@ -88,6 +107,7 @@ public class PhotoListPresenterImpl implements PhotoListPresenter {
             } else {
                 switch (event.getEventType()) {
                     case PhotoListEvent.NEXT_PHOTO:
+                        view.showImage();
                         view.setPhoto(event.getPhoto());
                         break;
                     case PhotoListEvent.SAVE_PHOTO:

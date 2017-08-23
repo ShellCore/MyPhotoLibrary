@@ -7,5 +7,7 @@ package com.shellcore.android.myphotolibrary.photolist.ui;
 public interface SwipeGestureListener {
 
     void onKeep();
+    void onKeepLeft();
     void onDismiss();
+    void onDismissDown();
 }

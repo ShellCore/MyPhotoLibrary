@@ -1,8 +1,7 @@
 package com.shellcore.android.myphotolibrary.photolist.di;
 
-import android.app.Activity;
-
 import com.shellcore.android.myphotolibrary.libs.di.LibsModule;
+import com.shellcore.android.myphotolibrary.photolist.ui.PhotoListActivity;
 
 import javax.inject.Singleton;
 
@@ -15,5 +14,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {LibsModule.class, PhotoListModule.class})
 public interface PhotoListComponent {
-    void inject(Activity activity);
+    void inject(PhotoListActivity activity);
 }

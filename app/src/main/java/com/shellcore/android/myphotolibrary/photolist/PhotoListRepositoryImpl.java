@@ -23,17 +23,22 @@ public class PhotoListRepositoryImpl implements PhotoListRepository {
     // Constants
     private static final int PHOTO_COUNT = 30;
 
+    // Variables
+    private String tags;
+
     // Services
     private EventBus eventBus;
     private FlickrService service;
 
 
-    public PhotoListRepositoryImpl(EventBus eventBus) {
+    public PhotoListRepositoryImpl(EventBus eventBus, FlickrService service) {
         this.eventBus = eventBus;
+        this.service = service;
     }
 
     @Override
     public void getNextPhoto(String tags) {
+        this.tags = tags;
         Call<PhotosResponse> call = service.search(tags, PHOTO_COUNT);
         call.enqueue(new Callback<PhotosResponse>() {
             @Override

@@ -1,5 +1,7 @@
 package com.shellcore.android.myphotolibrary.photolist.di;
 
+import com.shellcore.android.myphotolibrary.domains.FlickrClient;
+import com.shellcore.android.myphotolibrary.domains.FlickrService;
 import com.shellcore.android.myphotolibrary.libs.base.EventBus;
 import com.shellcore.android.myphotolibrary.photolist.NextPhotoInteractor;
 import com.shellcore.android.myphotolibrary.photolist.NextPhotoInteractorImpl;
@@ -55,7 +57,13 @@ public class PhotoListModule {
 
     @Provides
     @Singleton
-    PhotoListRepository providesPhotoListRepository(EventBus eventBus) {
-        return new PhotoListRepositoryImpl(eventBus);
+    PhotoListRepository providesPhotoListRepository(EventBus eventBus, FlickrService service) {
+        return new PhotoListRepositoryImpl(eventBus, service);
+    }
+
+    @Provides
+    @Singleton
+    FlickrService providesFlickrService() {
+        return new FlickrClient().getFlickrService();
     }
 }
